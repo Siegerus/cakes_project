@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import './App.scss';
-import Sandbox from './components/Sandbox';
+import './app.scss';
+import Sandbox from './components/sandbox/sandbox';
 
 function App() {
 	return (
