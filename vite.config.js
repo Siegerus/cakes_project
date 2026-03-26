@@ -32,7 +32,7 @@ export default defineConfig({
 					.update(fileName.concat(className))
 					.digest('hex')
 					.substring(0, 5);
-				return `${fileName}__${className}--${hash}`;
+				return `${fileName}-${className}--${hash}`;
 			}
 		}
 	}
