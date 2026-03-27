@@ -1,15 +1,15 @@
 import styles from './header.module.scss';
-import global from '../../global.module.scss';
 import Button from '../ui/button/button';
 import Hamburger from '../ui/hamburger/hamburger';
 import Logo from '../logo/logo';
 import NavMenu from '../nav-menu/nav-menu';
+import { NAVS } from '../../constants';
 
 type Props = {};
 
 const Header = (props: Props) => {
 	return (
-		<header>
+		<header className={styles.header}>
 			<div className={styles.wrapper}>
 				<div className={styles.primary}>
 					<Logo />
@@ -43,7 +43,7 @@ const Header = (props: Props) => {
 					<Hamburger />
 				</div>
 			</div>
-			<NavMenu />
+			<NavMenu navs={NAVS} linkClassName={styles.link} />
 		</header>
 	);
 };

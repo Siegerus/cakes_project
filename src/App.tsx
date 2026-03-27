@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { AppRoute } from './constants';
+import './global.module.scss';
 
-import './app.scss';
+import { AppRoute } from './constants';
 import MainLayout from './components/layout/main-layout';
 import MainPage from './pages/main-page';
 import AboutPage from './pages/about-page';

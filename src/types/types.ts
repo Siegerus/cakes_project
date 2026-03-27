@@ -7,7 +7,8 @@ export type Nav = {
 		| 'Доставка и оплата'
 		| 'Частые вопросы'
 		| 'Отзывы'
-		| 'Контакты';
+		| 'Контакты'
+		| 'Каталог десертов';
 	image: string;
 	path: (typeof AppRoute)[keyof typeof AppRoute];
 };
