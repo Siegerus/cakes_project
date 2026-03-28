@@ -7,15 +7,21 @@ import { getSecondaryNavs } from '../../utils/getSecondaryNavs';
 import { Nav } from '../../types/types';
 import styles from './hamburger-popup.module.scss';
 
-type Props = {};
+type HamburgerPopupProps = {
+	onHamburgerClick: () => void;
+};
 
-const HamburgerPopup = (props: Props) => {
+const HamburgerPopup = ({ onHamburgerClick }: HamburgerPopupProps) => {
+	const handleHamburgerClick = () => onHamburgerClick();
+	const handleNavLinkClick = () => onHamburgerClick();
+
 	return (
 		<div className={styles.wrapper}>
 			<div>
-				<Hamburger isPopup />
+				<Hamburger onHamburgerClick={handleHamburgerClick} isPopup />
 				<NavMenu
 					navs={getSecondaryNavs(NAVS, true) as Nav[]}
+					onNavLinkClick={handleNavLinkClick}
 					linkClassName={styles.link}
 				/>
 				<Button className={`button button_secondary ${styles.button}`}>

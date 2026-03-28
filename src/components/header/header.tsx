@@ -1,5 +1,7 @@
 import Button from '../ui/button/button';
 import Hamburger from '../ui/hamburger/hamburger';
+import { useState } from 'react';
+
 import Logo from '../logo/logo';
 import NavMenu from '../nav-menu/nav-menu';
 import HamburgerPopup from '../hamburger-popup/hamburger-popup';
@@ -9,6 +11,13 @@ import styles from './header.module.scss';
 type Props = {};
 
 const Header = (props: Props) => {
+	const [hamburgerMenuState, setHamburgerMenuState] =
+		useState<boolean>(false);
+
+	const handleHamburgerClick = () => {
+		setHamburgerMenuState(!hamburgerMenuState);
+	};
+
 	return (
 		<>
 			<header className={styles.header}>
@@ -46,13 +55,14 @@ const Header = (props: Props) => {
 								6 800 ₽
 							</span>
 						</Button>
-						<Hamburger />
+						<Hamburger onHamburgerClick={handleHamburgerClick} />
 					</div>
 				</div>
 				<NavMenu navs={NAVS} linkClassName={styles.link} />
 			</header>
-
-			<HamburgerPopup />
+			{hamburgerMenuState && (
+				<HamburgerPopup onHamburgerClick={handleHamburgerClick} />
+			)}
 		</>
 	);
 };

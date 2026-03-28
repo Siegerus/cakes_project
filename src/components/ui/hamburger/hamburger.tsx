@@ -2,9 +2,12 @@ import styles from './hamburger.module.scss';
 
 type HamburgerProps = {
 	isPopup?: boolean;
+	onHamburgerClick: () => void;
 };
 
-const Hamburger = ({ isPopup }: HamburgerProps) => {
+const Hamburger = ({ onHamburgerClick, isPopup }: HamburgerProps) => {
+	const handleHamburgerClick = () => onHamburgerClick();
+
 	return (
 		<button
 			className={
@@ -12,6 +15,7 @@ const Hamburger = ({ isPopup }: HamburgerProps) => {
 					? `${styles.wrapper} ${styles.wrapper_asEnd}`
 					: styles.wrapper
 			}
+			onClick={handleHamburgerClick}
 		>
 			<div className={styles.item}></div>
 			<div className={styles.item}></div>

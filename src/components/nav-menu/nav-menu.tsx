@@ -5,16 +5,24 @@ import styles from './nav-menu.module.scss';
 
 type NavMenuProps = {
 	navs: Nav[];
+	onNavLinkClick?: () => void;
 	linkClassName: string;
 };
 
-const NavMenu = ({ navs, linkClassName }: NavMenuProps) => {
+const NavMenu = ({ navs, onNavLinkClick, linkClassName }: NavMenuProps) => {
+	const handleNavLinkClick = () => {
+		if (onNavLinkClick) onNavLinkClick();
+	};
 	return (
 		<nav>
 			<ul>
 				{navs.map(nav => (
 					<li key={nav.title}>
-						<Link className={linkClassName} to={nav.path}>
+						<Link
+							className={linkClassName}
+							to={nav.path}
+							onClick={handleNavLinkClick}
+						>
 							<span>{nav.title}</span>
 						</Link>
 					</li>
