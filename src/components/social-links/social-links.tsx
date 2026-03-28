@@ -8,15 +8,9 @@ type SocialLinksProps = {
 const SocialLinks = ({ children }: SocialLinksProps) => {
 	return (
 		<ul className={styles.list}>
-			<li>
-				<a href="/">{children[0]}</a>
-			</li>
-			<li>
-				<a href="/">{children[1]}</a>
-			</li>
-			<li>
-				<a href="/">{children[2]}</a>
-			</li>
+			<li>{children[0]}</li>
+			<li>{children[1]}</li>
+			<li>{children[2]}</li>
 		</ul>
 	);
 };

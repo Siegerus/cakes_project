@@ -1,10 +1,18 @@
 import styles from './hamburger.module.scss';
 
-type Props = {};
+type HamburgerProps = {
+	isPopup?: boolean;
+};
 
-const Hamburger = (props: Props) => {
+const Hamburger = ({ isPopup }: HamburgerProps) => {
 	return (
-		<button className={styles.wrapper}>
+		<button
+			className={
+				isPopup
+					? `${styles.wrapper} ${styles.wrapper_asEnd}`
+					: styles.wrapper
+			}
+		>
 			<div className={styles.item}></div>
 			<div className={styles.item}></div>
 			<div className={styles.item}></div>

@@ -1,7 +1,5 @@
 import { PropsWithChildren } from 'react';
 
-import styles from './button.module.scss';
-
 type ButtonProps = PropsWithChildren<{
 	className: string;
 }>;

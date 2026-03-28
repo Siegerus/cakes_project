@@ -7,6 +7,10 @@
     border: none;
     background-color: #fff;
 
+    &_asEnd {
+        align-self: flex-end;
+    }
+
     .item {
         width: 100%;
         min-height: 4px;
@@ -14,7 +18,7 @@
 
         &:nth-child(2) {
             max-width: 20px;
-            margin: 6px 0 6px 0; 
+            margin: 6px 0 6px 0;
         }
     }
 }

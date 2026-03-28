@@ -4,7 +4,7 @@ import { Nav } from '../../types/types';
 import { NAVS } from '../../constants';
 import SocialLinks from '../social-links/social-links';
 import NavMenu from '../nav-menu/nav-menu';
-import { getFooterNavs } from '../../utils/getFooterNavs';
+import { getSecondaryNavs } from '../../utils/getSecondaryNavs';
 import Button from '../ui/button/button';
 import styles from './footer.module.scss';
 
@@ -32,7 +32,7 @@ const Footer = (props: Props) => {
 						<li></li>
 					</ul>
 					<NavMenu
-						navs={getFooterNavs(NAVS) as Nav[]}
+						navs={getSecondaryNavs(NAVS) as Nav[]}
 						linkClassName={styles.link}
 					/>
 				</div>
@@ -57,7 +57,9 @@ const Footer = (props: Props) => {
 							<use xlinkHref="#inst-bw"></use>
 						</svg>
 					</SocialLinks>
-					<Button className={styles.button}>
+					<Button
+						className={`button button_secondary ${styles.button}`}
+					>
 						<span>Написать в Telegram</span>
 						<svg
 							className={styles.button__icon}

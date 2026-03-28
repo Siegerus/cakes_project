@@ -53,14 +53,9 @@
 }
 
 .button {
-    composes: primary from '../ui/button/button.module.scss';
-    display: flex;
-    align-items: center;
     min-width: 291px;
     max-height: 52px;
     margin-right: 30px;
-    font-size: 16px;
-    font-weight: 600;
 
     &__icon {
         width: 16px;
@@ -68,7 +63,9 @@
     }
 
     &__text {
+        font-size: 16px;
         margin-right: 30px;
+        font-weight: 600;
     }
 }
 

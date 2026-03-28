@@ -1,5 +1,6 @@
 @use './libs/bootstrap-reboot.min.scss';
 @use './main.scss';
+@use './components/ui/button/button.module.scss';
 
 :root {
 	--primary-color: #ff4c80;
@@ -37,8 +38,6 @@ ol {
 	padding: 0;
 }
 
-
-
 html,
 body {
 	font-family: var(--primary-font);
@@ -64,6 +63,7 @@ body {
 	clip: rect(0 0 0 0);
 	overflow: hidden;
 }
+
 
 
 // @media (max-width: 1440px) 
