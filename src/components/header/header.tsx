@@ -1,12 +1,25 @@
 import Button from '../ui/button/button';
 import Hamburger from '../ui/hamburger/hamburger';
-import { useState } from 'react';
+import { useState, useEffect, KeyboardEvent } from 'react';
 
 import Logo from '../logo/logo';
 import NavMenu from '../nav-menu/nav-menu';
 import HamburgerPopup from '../hamburger-popup/hamburger-popup';
 import { NAVS } from '../../constants';
 import styles from './header.module.scss';
+
+type DocumentKeydownEvtType = {
+	removeEventListener(
+		type: 'keyup' | 'keydown',
+		listener: (event: KeyboardEvent) => any,
+		options?: boolean | EventListenerOptions
+	): void;
+	addEventListener(
+		type: 'keyup' | 'keydown',
+		listener: (event: KeyboardEvent) => any,
+		options?: boolean | EventListenerOptions
+	): void;
+};
 
 type Props = {};
 
@@ -17,6 +30,21 @@ const Header = (props: Props) => {
 	const handleHamburgerClick = () => {
 		setHamburgerMenuState(!hamburgerMenuState);
 	};
+
+	const handleKeyDown = () => {
+		console.log('pressed!');
+	};
+
+	const orginalDocument = document;
+
+	useEffect(() => {
+		let documentElement: DocumentKeydownEvtType = document;
+		const closePopup = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') setHamburgerMenuState(false);
+		};
+		documentElement.addEventListener('keydown', closePopup);
+		return () => documentElement.removeEventListener('keydown', closePopup);
+	}, [hamburgerMenuState]);
 
 	return (
 		<>
@@ -41,8 +69,6 @@ const Header = (props: Props) => {
 					<div className={styles.secondary}>
 						<Button
 							className={`button button_primary ${styles.button}`}
-							isLink
-							url={'/'}
 						>
 							<svg
 								className={styles.button__icon}
