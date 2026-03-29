@@ -41,6 +41,8 @@ const Header = (props: Props) => {
 					<div className={styles.secondary}>
 						<Button
 							className={`button button_primary ${styles.button}`}
+							isLink
+							url={'/'}
 						>
 							<svg
 								className={styles.button__icon}

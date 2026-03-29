@@ -1,5 +1,10 @@
 :global(.button) {
     border: none;
+    text-decoration: none;
+
+    &:hover {
+        color: #fff;
+    }
 }
 
 :global(.button_primary) {

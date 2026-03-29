@@ -24,7 +24,11 @@ const HamburgerPopup = ({ onHamburgerClick }: HamburgerPopupProps) => {
 					onNavLinkClick={handleNavLinkClick}
 					linkClassName={styles.link}
 				/>
-				<Button className={`button button_secondary ${styles.button}`}>
+				<Button
+					className={`button button_secondary ${styles.button}`}
+					isLink
+					url={'/'}
+				>
 					<span>Написать в Telegram</span>
 					<svg className={styles.button__icon} viewBox="0 0 15 13">
 						<use xlinkHref="#tg-sm"></use>

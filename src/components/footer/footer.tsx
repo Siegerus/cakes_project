@@ -59,6 +59,8 @@ const Footer = (props: Props) => {
 					</SocialLinks>
 					<Button
 						className={`button button_secondary ${styles.button}`}
+						isLink
+						url={'/'}
 					>
 						<span>Написать в Telegram</span>
 						<svg
