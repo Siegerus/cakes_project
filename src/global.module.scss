@@ -64,6 +64,30 @@ body {
 	overflow: hidden;
 }
 
+@media (max-width: 1200px) {
+	:global(.container) {
+		max-width: 968px;
+	}
+}
+
+@media (max-width: 992px) {
+	:global(.container) {
+		max-width: 695px;
+	}
+}
+
+@media (max-width: 767px) {
+	:global(.container) {
+		max-width: 540px;
+	}
+}
+
+@media (max-width: 576px) {
+	:global(.container) {
+		max-width: 100%;
+		padding: 0 15px;
+	}
+}
 
 
 // @media (max-width: 1440px) 
@@ -71,12 +95,58 @@ body {
 //         max-width: 1200px
 
 
-// @media (max-width: 1200px) {
-//     :global(.container) {
-//         max-width: 968px;
-//     }
-// }
+// @media (max-width: 1200px) 
+//     .container 
+//         max-width: 968px
 
+
+// @media (max-width: 992px) 
+//     .container 
+//         max-width: 695px
+
+
+// @media (max-width: 767px) 
+//     .container 
+//         max-width: 540px
+
+
+// @media (max-width: 576px) 
+//     .container 
+//         max-width: 100%
+//         padding: 0 15px
+
+
+// @media (max-width: 360px) 
+//     .container 
+//         max-width: 100%
+//         padding: 0 15px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// @media (max-width: 1440px) 
+//     .container 
+//         max-width: 1200px
+
+
+// @media (max-width: 1200px) 
+//     .container 
+//         max-width: 968px
 
 
 // @media (max-width: 992px) 

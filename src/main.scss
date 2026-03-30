@@ -60,41 +60,12 @@
   font-display: swap;
 }
 
-
-
-
-
-
-
-
-
-// @media (max-width: 1440px) 
-//     .container 
-//         max-width: 1200px
-
-
-// @media (max-width: 1200px) 
-//     .container 
-//         max-width: 968px
-
-
-// @media (max-width: 992px) 
-//     .container 
-//         max-width: 695px
-
-
-// @media (max-width: 767px) 
-//     .container 
-//         max-width: 540px
-
-
-// @media (max-width: 576px) 
-//     .container 
-//         max-width: 100%
-//         padding: 0 15px
-
-
-// @media (max-width: 375px) 
-//     .container 
-//         max-width: 100%
-//         padding: 0 15px
+@font-face {
+  font-family: 'Pribambas';
+  font-style: normal;
+  font-weight: 400;
+  src:
+    // url('../fonts/Inter_18pt-Black.woff') format('woff'),
+    url('../public/fonts/Pribambas-Regular.ttf') format('truetype');
+  font-display: swap;
+}
