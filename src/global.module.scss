@@ -50,6 +50,10 @@ body {
 	padding: 0;
 }
 
+:global(.container_footer) {
+	max-width: 100%;
+}
+
 :global(.visually-hidden) {
 	position: absolute;
 	width: 1px;
@@ -68,6 +72,11 @@ body {
 	:global(.container) {
 		max-width: 968px;
 	}
+
+	:global(.container_footer) {
+		max-width: 100%;
+	}
+
 }
 
 @media (max-width: 992px) {

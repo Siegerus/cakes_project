@@ -13,7 +13,7 @@ type Props = {};
 const Footer = (props: Props) => {
 	return (
 		<div className={styles.wrapper}>
-			<div className="container">
+			<div className="container_footer container">
 				<div>
 					<ul className={styles.side}>
 						<li className={styles.agreementLink}>
@@ -35,41 +35,41 @@ const Footer = (props: Props) => {
 						navs={getSecondaryNavs(NAVS) as Nav[]}
 						linkClassName={styles.link}
 					/>
-				</div>
-				<div className={styles.social}>
-					<SocialLinks>
-						<svg
-							className={styles.social__icon}
-							viewBox="0 0 40 40"
+					<div className={styles.social}>
+						<SocialLinks>
+							<svg
+								className={styles.social__icon}
+								viewBox="0 0 40 40"
+							>
+								<use xlinkHref="#tg-bw"></use>
+							</svg>
+							<svg
+								className={styles.social__icon}
+								viewBox="0 0 40 40"
+							>
+								<use xlinkHref="#vk-bw"></use>
+							</svg>
+							<svg
+								className={styles.social__icon}
+								viewBox="0 0 40 40"
+							>
+								<use xlinkHref="#inst-bw"></use>
+							</svg>
+						</SocialLinks>
+						<Button
+							className={`button button_secondary ${styles.button}`}
+							isLink
+							url={'/'}
 						>
-							<use xlinkHref="#tg-bw"></use>
-						</svg>
-						<svg
-							className={styles.social__icon}
-							viewBox="0 0 40 40"
-						>
-							<use xlinkHref="#vk-bw"></use>
-						</svg>
-						<svg
-							className={styles.social__icon}
-							viewBox="0 0 40 40"
-						>
-							<use xlinkHref="#inst-bw"></use>
-						</svg>
-					</SocialLinks>
-					<Button
-						className={`button button_secondary ${styles.button}`}
-						isLink
-						url={'/'}
-					>
-						<span>Написать в Telegram</span>
-						<svg
-							className={styles.button__icon}
-							viewBox="0 0 15 13"
-						>
-							<use xlinkHref="#tg-sm"></use>
-						</svg>
-					</Button>
+							<span>Написать в Telegram</span>
+							<svg
+								className={styles.button__icon}
+								viewBox="0 0 15 13"
+							>
+								<use xlinkHref="#tg-sm"></use>
+							</svg>
+						</Button>
+					</div>
 				</div>
 			</div>
 		</div>
