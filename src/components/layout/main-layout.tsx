@@ -8,7 +8,7 @@ const MainLayout = (props: Props) => {
 	return (
 		<>
 			<div className="container">
-				{/* <Header /> */}
+				<Header />
 				<main>
 					<Outlet />
 				</main>
