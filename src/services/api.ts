@@ -1,14 +1,13 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import { toast, Flip } from 'react-toastify';
 
+import BACKEND_URL from '../config/env';
 import { requestTimeout } from '../constants';
 import { processErrorHandle } from './process-error-handle';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-
 const createAPI = (): AxiosInstance => {
 	const api = axios.create({
-		baseURL: BASE_URL,
+		baseURL: BACKEND_URL,
 		timeout: requestTimeout
 	});
 

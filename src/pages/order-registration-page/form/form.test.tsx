@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { NameSpace, LoadingStatus } from '../../../constants';
@@ -11,13 +11,34 @@ import Form from './form';
 describe('Component: Form', () => {
 	const handleSubmit = jest.fn();
 
+	// Мокаем fetch для имитации успешного создания платежа и проверки статуса
+	global.fetch = jest.fn().mockImplementation((url: string) => {
+		if (url.includes('/api/payment') && !url.includes('/status')) {
+			// Запрос на создание платежа
+			return Promise.resolve({
+				ok: true,
+				json: async () => ({
+					paymentId: 'test-payment-id',
+					paymentUrl: '/payment/test-url'
+				})
+			});
+		}
+		// Запрос на проверку статуса
+		return Promise.resolve({
+			ok: true,
+			json: async () => ({
+				status: 'success'
+			})
+		});
+	}) as jest.Mock;
+
 	beforeEach(() => {
 		handleSubmit.mockClear();
 	});
 
 	const renderForm = (initialState = {}) => {
 		const componentWithHistory = withHistory(
-			<Form onSubmit={handleSubmit} />
+			<Form onSubmit={handleSubmit} finalSum={5000} />
 		);
 		const { withStoreComponent } = withStore(
 			componentWithHistory,
@@ -72,13 +93,13 @@ describe('Component: Form', () => {
 		renderForm();
 
 		expect(
-			screen.queryByRole(textAreaRole, { name: /Комментарий/i })
+			screen.queryByRole(textAreaRole, { name: /comment/i })
 		).not.toBeInTheDocument();
 
 		await userEvent.click(screen.getByText(addButtonText));
 
 		expect(
-			screen.getByRole(textAreaRole, { name: /Комментарий/i })
+			screen.getByRole(textAreaRole, { name: /comment/i })
 		).toBeInTheDocument();
 	});
 
@@ -112,8 +133,17 @@ describe('Component: Form', () => {
 
 		await userEvent.click(screen.getByText(submitButtonText));
 
-		expect(handleSubmit).toHaveBeenCalledTimes(1);
-		expect(handleSubmit).toHaveBeenCalledWith(expectedFormValues);
+		// Дожидаемся, пока paymentStatus станет 'success' и вызовется onSubmit
+		// Polling проверки статуса происходит каждые 2 секунды
+		await waitFor(
+			() => {
+				expect(handleSubmit).toHaveBeenCalledTimes(1);
+				expect(handleSubmit).toHaveBeenCalledWith(expectedFormValues);
+			},
+			{ timeout: 5000 }
+		);
+
+		(global.fetch as jest.Mock).mockRestore();
 	});
 
 	it('Should not call onSubmit when required fields are empty', async () => {
@@ -139,7 +169,9 @@ describe('Component: Form', () => {
 			},
 			[NameSpace.Cart]: {
 				shoppingCart: [fakeOrder],
-				discountLoadingStatus: LoadingStatus.Idle
+				discountLoadingStatus: LoadingStatus.Idle,
+				discount: 0,
+				discountError: null
 			}
 		});
 

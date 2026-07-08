@@ -5,7 +5,7 @@ import Adder from './adder';
 
 describe('Component: Adder', () => {
 	const renderAdder = ({
-		priceCounter = getFormattedPrice(3600),
+		priceCounter = '3 600',
 		isWrapped = false,
 		formId = 'test-form'
 	}: {
@@ -50,7 +50,7 @@ describe('Component: Adder', () => {
 	it('should render with different prices', () => {
 		const expectedPrice = /5\s?200\s?₽/;
 
-		renderAdder({ priceCounter: getFormattedPrice(5200) });
+		renderAdder({ priceCounter: '5 200' });
 
 		expect(screen.getByText(expectedPrice)).toBeInTheDocument();
 	});
