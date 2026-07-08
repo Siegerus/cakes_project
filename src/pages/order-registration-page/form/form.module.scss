@@ -55,13 +55,6 @@
 		font-weight: 400;
 	}
 
-	&__arrow {
-		width: 15px;
-		height: 15px;
-		margin-left: auto;
-		fill: variables.$color-text-light;
-	}
-
 	&__iframeWrapper {
 		overflow: hidden;
 		border: 1.5px solid variables.$color-bg-secondary;

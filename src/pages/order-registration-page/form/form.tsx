@@ -231,27 +231,6 @@ const Form = ({ onSubmit, finalSum }: FormProps) => {
 			id="order-registration-form"
 			data-testid="order-registration-form"
 		>
-			<section className={styles.delivery}>
-				<div className={styles.delivery__header}>
-					<svg
-						className={styles.delivery__icon}
-						viewBox="0 0 18 18"
-						aria-hidden="true"
-					>
-						<use xlinkHref="#deliveryman"></use>
-					</svg>
-					<h2 className={styles.delivery__title}>
-						Доставка курьером по Москве
-					</h2>
-					<svg
-						className={styles.delivery__arrow}
-						viewBox="0 0 18 18"
-						aria-hidden="true"
-					>
-						<use xlinkHref="#arrow-sm"></use>
-					</svg>
-				</div>
-			</section>
 			<section className={styles.payment}>
 				<div className={styles.payment__header}>
 					<svg
@@ -266,9 +245,6 @@ const Form = ({ onSubmit, finalSum }: FormProps) => {
 							? 'Оплачено'
 							: 'Оплата банковской картой'}
 					</h2>
-					<svg className={styles.payment__arrow} aria-hidden="true">
-						<use xlinkHref="#arrow-sm"></use>
-					</svg>
 				</div>
 
 				{/* Iframe с оплатой */}
@@ -323,6 +299,8 @@ const Form = ({ onSubmit, finalSum }: FormProps) => {
 			</section>
 			<div className={styles.description}>
 				Стоимость и время доставки согласуем при подтверждении заказа
+				<br /> <br />
+				Что бы перейти к оплате, заполните поля ниже
 			</div>
 			<div className={styles.fields}>
 				<input
