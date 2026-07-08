@@ -300,7 +300,8 @@ const Form = ({ onSubmit, finalSum }: FormProps) => {
 			<div className={styles.description}>
 				Стоимость и время доставки согласуем при подтверждении заказа
 				<br /> <br />
-				Что бы перейти к оплате, заполните поля ниже
+				Что бы перейти к оплате, заполните поля ниже и нажмите «Оформить
+				заказ»
 			</div>
 			<div className={styles.fields}>
 				<input

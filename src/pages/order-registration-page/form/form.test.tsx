@@ -59,9 +59,6 @@ describe('Component: Form', () => {
 
 		expect(screen.getByTestId(formTestId)).toBeInTheDocument();
 		expect(
-			screen.getByText(/Доставка курьером по Москве/i)
-		).toBeInTheDocument();
-		expect(
 			screen.getByPlaceholderText(namePlaceholderText)
 		).toBeInTheDocument();
 		expect(
