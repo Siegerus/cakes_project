@@ -154,5 +154,22 @@ describe('Thunk api actions', () => {
 				LoadingStatus.Failed
 			);
 		});
+
+		it('Should dispatch cart/getDiscount.rejected with invalid_promo on 400 with valid: false', async () => {
+			const promoCode = 'INVALID_PROMO';
+			mockAxiosAdapter.onPost(APIRoute.promoCode).reply(400, {
+				valid: false,
+				message: 'Неверный промокод'
+			});
+
+			const result = await store.dispatch(getDiscountAction(promoCode));
+
+			expect(result.type).toBe(getDiscountAction.rejected.type);
+			expect(result.payload).toBe('invalid_promo');
+			expect(store.getState()[NameSpace.Cart].discountError).toBe('Неверный промокод');
+			expect(store.getState()[NameSpace.Cart].discountLoadingStatus).toBe(
+				LoadingStatus.Failed
+			);
+		});
 	});
 });

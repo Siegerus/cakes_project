@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosInstance } from 'axios';
+import { AxiosInstance, AxiosError } from 'axios';
 
 import { APIRoute } from '../constants';
 import { AppDispatch, State } from '../types/store';
@@ -37,6 +37,7 @@ export const getDiscountAction = createAsyncThunk<
 		dispatch: AppDispatch;
 		state: State;
 		extra: AxiosInstance;
+		rejectValue: string;
 	}
 >('cart/getDiscount', async (code: string, { extra: api, getState, rejectWithValue }) => {
 	const { shoppingCart } = getState().CART;
@@ -56,7 +57,11 @@ export const getDiscountAction = createAsyncThunk<
 		}
 
 		return { discount: data.discount, discountedSum: data.discountedSum };
-	} catch {
+	} catch (error) {
+		const axiosError = error as AxiosError<{ valid?: boolean }>;
+		if (axiosError.response?.data?.valid === false) {
+			return rejectWithValue('invalid_promo');
+		}
 		return rejectWithValue('server_error');
 	}
 });
