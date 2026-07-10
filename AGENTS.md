@@ -58,6 +58,65 @@
 -   **react-draggable** — перетаскивание элементов
 -   **uuid** — генерация уникальных ID
 
+## Backend
+
+### Стек:
+
+-   **Node.js + Express** — HTTP-сервер
+-   **TypeScript** — типизация
+-   **SQLite (sql.js)** — база данных в файле
+-   **Zod** — валидация данных
+-   **Nodemailer** — подготовка к email-уведомлениям
+-   **Telegram Bot API** — уведомления в Telegram
+
+### Структура:
+
+```
+backend/
+├── src/
+│   ├── index.ts          # Точка входа, запуск сервера
+│   ├── config.ts         # Переменные окружения
+│   ├── db.ts             # Подключение к SQLite
+│   ├── routes/
+│   │   └── orders.ts     # Роут POST /api/orders
+│   ├── services/
+│   │   ├── email.ts      # Отправка email (заглушка)
+│   │   └── telegram.ts   # Отправка в Telegram
+│   ├── utils/
+│   │   └── validation.ts # Zod-схемы валидации
+│   └── types/
+│       └── order.ts      # Типы заказа
+├── package.json
+├── tsconfig.json
+├── .env.example
+└── .gitignore
+```
+
+### Конфигурация:
+
+-   Переменные бэкенда хранятся в `backend/.env` (не в Git)
+-   Шаблон — в `backend/.env.example`
+-   Переменные фронтенда хранятся в корневом `.env`
+-   Обязательные для бэкенда: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `EMAIL_USER`, `EMAIL_APP_PASSWORD`
+
+### API:
+
+-   `GET /api/offers` — получение списка тортов
+    -   Отдаёт JSON из `backend/data/offers.json`
+    -   Используется `fetchOffersAction` на фронтенде
+-   `POST /api/orders` — создание заказа
+    -   Принимает фронтендовый формат `Order`, адаптирует его во внутреннюю схему `FrontendOrder`
+    -   Валидирует Zod-схемой
+    -   Сохраняет в SQLite
+    -   Отправляет уведомления в Telegram
+    -   Возвращает `{ id: number }`
+
+### Деплой:
+
+-   Сервер запускается через `npm run dev` (разработка) или `npm run build && npm start` (продакшн)
+-   Порт: `4000` по умолчанию
+-   Для продакшена используется PM2: `pm2 start dist/index.js`
+
 ## Структура проекта
 
 ```
@@ -130,6 +189,12 @@ src/
 -   `/order-registration` — Оформление заказа
 -   `/thanks-page` — Страница благодарности
 
+### API actions:
+
+-   `fetchOffersAction` — получает список тортов с бэкенда/мока
+-   `sendOrderAction` — отправляет заказ на `POST /api/orders`
+-   `getDiscountAction` — запрашивает скидку по промокоду (пока заглушка, будет реализован на бэкенде)
+
 ### Ключевые типы:
 
 -   `CakeOffer` — объект торта с начинками, весом, дополнениями
@@ -172,6 +237,7 @@ src/
 ## Скрипты
 
 ```bash
+# Frontend
 npm run dev          # Запуск dev-сервера (localhost:3000)
 npm run build        # Сборка для продакшена
 npm run serve        # Превью продакшен-сборки
@@ -181,6 +247,11 @@ npm run lint:stylelint  # Проверка Stylelint
 npm run fix:stylelint   # Исправление Stylelint
 npm run test         # Запуск тестов
 npm run format       # Форматирование Prettier
+
+# Backend
+cd backend && npm run dev          # Запуск dev-сервера (localhost:4000)
+cd backend && npm run build        # Сборка TypeScript
+cd backend && npm run start        # Запуск продакшен-сборки
 ```
 
 ## Соглашения по коду
@@ -214,11 +285,14 @@ npm run format       # Форматирование Prettier
 4. **Изображения**: Хранятся в `public/images/`
 5. **Шрифты**: Хранятся в `public/fonts/`, подключение через `_fonts.scss`
 6. **Иконки**: SVG-спрайт, использование через `<use xlinkHref="#icon-name">`
+7. **Backend URL**: Для локальной разработки используй `VITE_BACKEND_URL=http://localhost:4000/api` в `.env`. Frontend отправляет заказы на `POST /api/orders`.
+8. **Order format**: Frontend отправляет заказ в формате `Order` (из `src/types/types.ts`), бэкенд валидирует его как `FrontendOrder` и сохраняет в SQLite.
 
 ## Перед началом работы
 
 1. Изучи структуру проекта и текущую реализацию
-2. Проверь типы в `src/types/`
+2. Проверь типы в `src/types/` и `backend/src/types/`
 3. Ознакомься с константами в `src/constants.ts`
 4. Убедись, что понимаешь структуру Redux store
 5. Проверь наличие связанных хуков и утилит
+6. Для бэкенда ознакомься с `backend/src/routes/orders.ts`, `backend/src/services/telegram.ts`, `backend/src/services/email.ts`
