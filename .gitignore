@@ -9,3 +9,7 @@ pnpm-debug.log*
 node_modules
 dist
 cakes_project.code-workspace
+AGENTS.md
+backend/cakes.db
+*.db
+*.sqlite
