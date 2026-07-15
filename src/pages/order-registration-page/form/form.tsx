@@ -120,7 +120,7 @@ const Form = ({ onSubmit, finalSum, getPaymantStatus }: FormProps) => {
 				getPaymantStatus(false);
 			}
 		},
-		[paymentUrl]
+		[paymentUrl, getPaymantStatus]
 	);
 
 	useEffect(() => {
