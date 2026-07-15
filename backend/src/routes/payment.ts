@@ -141,7 +141,7 @@ router.get('/pay/:paymentId', (req: Request, res: Response) => {
 		.btn:hover { opacity: 0.9; }
 		.btn:disabled { opacity: 0.5; cursor: not-allowed; }
 		.btn_primary {
-			background: #c9a96e;
+			background: #ff4c80;
 			color: #fff;
 		}
 		.btn_secondary {
