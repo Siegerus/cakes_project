@@ -1,10 +1,11 @@
 const nameValidate = (value: string): boolean | string => {
 	if (!value || !value.length) return 'Введите имя';
+	if (value && value.length > 100) return 'Слишком много символов';
+
 	if (!/^[a-zA-Zа-яА-Я\s-]+$/.test(value))
 		return 'Имя должно содержать только буквы';
 	const nonSpaceCount = value.replace(/\s/g, '').length;
-	if (nonSpaceCount < 2)
-		return 'Имя должно содержать минимум 2 символа';
+	if (nonSpaceCount < 2) return 'Имя должно содержать минимум 2 символа';
 	return true;
 };
 
@@ -13,19 +14,30 @@ const phoneValidate = (value: string): boolean | string => {
 
 	const digits = value.replace(/\D/g, '');
 
+	if (!digits) return 'Номер телефона должен содержать цифры';
+
+	if (digits.length < 11)
+		return 'Номер телефона должен содержать минимум 10 цифр';
+	if (digits.length > 15) return 'Слишком много символов';
+
 	if (
 		digits.length === 11 &&
 		(digits.startsWith('7') || digits.startsWith('8'))
 	)
 		return true;
-	return 'Номер телефона должен быть в формате +7 999 999 99 99';
+
+	if (digits.length === 10 && digits.startsWith('9')) return true;
+
+	return true;
 };
 
 const addressValidate = (value: string): boolean | string => {
 	if (!value) return true;
+
+	if (value && value.length > 100) return 'Слишком много символов';
+
 	const nonSpace = value.replace(/\s/g, '').length;
-	if (nonSpace < 6)
-		return 'Адрес должен содержать минимум 6 символов';
+	if (nonSpace < 6) return 'Адрес должен содержать минимум 6 символов';
 	return true;
 };
 
@@ -37,6 +49,7 @@ const commentValidate = (value: string): boolean | string => {
 
 const promoValidate = (value: string): boolean | string => {
 	if (!value || value.length < 6) return 'Введите минимум 6 символов';
+	if (value && value.length > 30) return 'Слишком много символов';
 	return true;
 };
 
