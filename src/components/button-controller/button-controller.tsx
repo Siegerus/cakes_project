@@ -39,6 +39,7 @@ const ButtonController = ({
 		>
 			<div
 				className={`${styles.component} ${outerClass}`}
+				style={{ top: `${bounds.top}` }}
 				ref={elementRef}
 			>
 				<div className={styles.inner}>{children}</div>
