@@ -17,6 +17,8 @@ const ButtonController = ({
 		bottom: 0
 	});
 
+	const defaultIndent = 0;
+
 	useLayoutEffect(() => {
 		if (elementRef.current) {
 			const offset = elementRef.current.offsetTop;
@@ -32,14 +34,14 @@ const ButtonController = ({
 	return (
 		<Draggable
 			axis="y"
-			defaultPosition={{ x: 0, y: bounds.top }}
+			defaultPosition={{ x: 0, y: defaultIndent }}
 			nodeRef={elementRef}
 			handle=".handle"
 			bounds={bounds}
 		>
 			<div
 				className={`${styles.component} ${outerClass}`}
-				style={{ top: `${bounds.top}` }}
+				style={{ bottom: `${defaultIndent}px` }}
 				ref={elementRef}
 			>
 				<div className={styles.inner}>{children}</div>
