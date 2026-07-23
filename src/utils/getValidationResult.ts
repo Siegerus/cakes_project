@@ -20,13 +20,21 @@ const phoneValidate = (value: string): boolean | string => {
 		return 'Номер телефона должен содержать минимум 10 цифр';
 	if (digits.length > 15) return 'Слишком много символов';
 
-	if (
-		digits.length === 11 &&
-		(digits.startsWith('7') || digits.startsWith('8'))
-	)
-		return true;
+	if (!digits) return 'Номер телефона должен содержать цифры';
 
-	if (digits.length === 10 && digits.startsWith('9')) return true;
+	if (digits.length < 11)
+		return 'Номер телефона должен содержать минимум 10 цифр';
+	if (digits.length > 15) return 'Слишком много символов';
+
+	// Номер должен начинаться с +7 или 8 (в исходном виде) или с 7 или 8 (в виде цифр)
+	if (
+		!value.startsWith('+7') &&
+		!value.startsWith('8') &&
+		!digits.startsWith('7') &&
+		!digits.startsWith('8')
+	) {
+		return 'Неправильный формат номера телефона';
+	}
 
 	return true;
 };
