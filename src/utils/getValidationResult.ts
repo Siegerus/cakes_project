@@ -20,12 +20,6 @@ const phoneValidate = (value: string): boolean | string => {
 		return 'Номер телефона должен содержать минимум 10 цифр';
 	if (digits.length > 15) return 'Слишком много символов';
 
-	if (!digits) return 'Номер телефона должен содержать цифры';
-
-	if (digits.length < 11)
-		return 'Номер телефона должен содержать минимум 10 цифр';
-	if (digits.length > 15) return 'Слишком много символов';
-
 	// Номер должен начинаться с +7 или 8 (в исходном виде) или с 7 или 8 (в виде цифр)
 	if (
 		!value.startsWith('+7') &&
